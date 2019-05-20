@@ -3,6 +3,8 @@ import './App.css';
 
 class App extends React.Component {
 
+  interval: any;
+
   state = {
     startScroll: 0,
     scroll: {
@@ -14,9 +16,13 @@ class App extends React.Component {
 
   componentDidMount() {
     this.setState({ scroll: document.getElementById('slide') });
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.Play();
     }, 3000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.interval);
   }
 
   Play = () => {
